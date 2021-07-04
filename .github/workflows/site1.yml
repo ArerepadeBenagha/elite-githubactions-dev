@@ -1,0 +1,14 @@
+name: Build on Ubuntu
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install jq tool and tree
+        run: |
+          sudo apt-get update
+          sudo apt-get install jq
+          sudo apt-install tree -y
