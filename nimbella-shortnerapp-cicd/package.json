@@ -9,13 +9,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "mongoose": "^5.11.16",
-    "nanoid": "^3.1.20"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "jest": "^26.6.3"
+    "dotenv": "^8.6.0",
+    "jest": "^26.6.3",
+    "mongoose": "^5.13.10",
+    "nanoid": "^3.1.29"
   }
 }
-
