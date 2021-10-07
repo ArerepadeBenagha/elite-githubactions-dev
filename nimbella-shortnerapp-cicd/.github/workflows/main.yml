@@ -1,0 +1,47 @@
+name: Workflow for URL Shortner App
+on:                              #GitHub Action That Triggers the Flow
+  push:
+    branches: [main]
+jobs:                             #WorkFlow Run is made up of Jobs
+  test:                           #Test Job 
+    runs-on: ubuntu-latest        #Type of Machine Needed to Run the Job
+    strategy:
+      matrix:
+        node-version: [10.x]      #Set-up Node 
+    steps:
+      - uses: actions/checkout@v2 #Checks-out Repository so that workflow can access it
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install          #Install Dependencies
+      - run: npm test             #Trigger Automated Test
+    env:                          #Environment Variables Required by the App
+      DB_Username: ${{ secrets.TEST_DB_USERNAME }}
+      DB_Password: ${{ secrets.TEST_DB_PASSWORD }}
+      DB_ClusterUri: ${{ secrets.TEST_DB_CLUSTERURI }}
+      DB_Name: ${{ secrets.TEST_DB_NAME }}
+      BASE_URL: ${{ secrets.TEST_BASE_URL }}
+  deploy:                        #Deploy Job
+    needs: test                  #Making Deploy Job's Run depends on Test Job
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+                                #Install Nim CLI
+      - run: npm install -g https://apigcp.nimbella.io/downloads/nim/nimbella-cli.tgz 
+      - run: nim auth login ${{ secrets.DEPLOYER_LOGIN_TOKEN }} #Login Nim CLI
+      - run: nim project deploy . #Deploy Project Artifacts on Nimbella
+    env:
+      DB_Username: ${{ secrets.PROD_DB_USERNAME }}
+      DB_Password: ${{ secrets.PROD_DB_PASSWORD }}
+      DB_ClusterUri: ${{ secrets.PROD_DB_CLUSTERURI }}
+      DB_Name: ${{ secrets.PROD_DB_NAME }}
+      BASE_URL: ${{ secrets.PROD_BASE_URL }}

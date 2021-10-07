@@ -1,0 +1,135 @@
+.App {
+  text-align: center;
+  background-color: rgb(11, 57, 156);
+  color: white;
+  
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@media screen and (max-width: 640px)
+{
+.textboxHeight
+{
+  width: 360px;
+}
+
+}
+
+@media screen and (max-width: 640px)
+{
+.resultTextArea
+{
+  width: 360px;
+}
+
+}
+@media screen and (min-width: 768px)
+{
+.textboxHeight
+{
+  width: 720px;
+}
+
+}
+
+@media screen and (min-width: 768px)
+{
+.resultTextArea
+{
+  width: 720px;
+}
+
+}
+
+.App-header {
+  background-color: #050b16;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  border:none
+}
+.textboxHeight{
+  display:inline-block;
+  vertical-align:center;
+  resize: none;
+  word-wrap:anywhere ;
+  border:none;
+  text-align: justify-all ;
+ 
+    height:120px; font-size:12pt;
+  
+  
+}
+
+
+.resultTextArea{
+
+  height:120px; font-size:12pt;
+  display:inline-block;
+  opacity: 100;
+  background-color: #050911;color:#fff;
+  vertical-align:middle;
+  border:none;
+  text-align: justify-all ;
+  
+  
+ 
+}
+.button
+{
+  border-radius: 5px;
+  border: 0;
+  width: 80px;
+  font-size: 12pt;
+  height:25px;
+  font-family: Tahoma;
+  background: #0e3791;
+  width: 120px;
+  height: 40px;
+  color: white;
+
+
+}
+
+
+.labelclass
+{
+  font-size:12pt;
+}
+.labelerror
+{
+  font-size:12pt;
+  color:red
+}
+
+
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+
+  
+}
+
